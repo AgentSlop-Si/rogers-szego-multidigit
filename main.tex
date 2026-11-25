@@ -1,0 +1,565 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks=true,breaklinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Disc}{\operatorname{Disc}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\qbin}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}_q}
+
+\title[Multi-Digit Base-$p$ Squarefreeness for Rogers--Szeg\H{o} Polynomials]{Multi-Digit Base-$p$ Squarefreeness and Christoffel--Darboux\\Kernel Nonvanishing for Rogers--Szeg\H{o} Polynomials\\at Prime-Power Roots of Unity}
+
+\author[D. Kuttymbek]{Daniyar Kuttymbek}
+\address{Astana, Kazakhstan}
+\email{daniyar.kuttymbek@gmail.com}
+
+\author[A. Kuttymbek]{Adilkhan Kuttymbek}
+\address{Astana, Kazakhstan}
+\email{adilkhan.kuttymbek@gmail.com}
+
+\author[D. Kuttymbek]{Dayana Kuttymbek}
+\address{Astana, Kazakhstan}
+\email{dayanamiu74@gmail.com}
+
+\author[A. Kolpenova]{Amina Kolpenova}
+\address{Astana, Kazakhstan}
+\email{aminakolpenova@gmail.com}
+
+\author[M. Kottumbekov]{Mukhammadali Kottumbekov}
+\address{Astana, Kazakhstan}
+\email{mukhammadalikottumbek@gmail.com}
+
+\date{\today}
+\subjclass[2020]{Primary 33D45, 11S05; Secondary 11R18, 11C08, 42C05}
+\keywords{Rogers--Szeg\H{o} polynomials, continuous $q$-Hermite recurrence, Christoffel--Darboux kernel, $p$-adic Newton polygons, prime-power roots of unity, squarefreeness}
+
+\begin{document}
+
+\begin{abstract}
+Let $H_n(z;q)=\sum_{k=0}^n \qbin{n}{k} z^k$ be the Rogers--Szeg\H{o} polynomial and let $P_n(X;q)$ be its symmetric three-term recurrence counterpart defined by $P_0=1$, $P_1=X$, and $P_{b+1}=XP_b-(1-q^b)P_{b-1}$, with weights $w_a=\prod_{v=1}^a(1-q^v)$. In Part~I~\cite{KKKKK26rs}, the authors established moving-root splitting for ordinary $z$-discriminants of $H_n(z;q)$ and proved static squarefreeness for single-digit degrees $0\le n<p$ at prime-power orders $p^s$. Here we attack the multi-digit base-$p$ regime $n < p^s$ for every odd prime $p$ and every characteristic-zero primitive $p^s$-th root of unity $q$, proving simultaneously that the original polynomials $P_n$ and $H_n$ are squarefree and that the original algebraic-square Christoffel--Darboux kernel
+\[
+K_n(\xi) := \sum_{a=0}^{n-1}\frac{P_a(\xi)^2}{w_a} = \frac{P_n'(\xi)P_{n-1}(\xi)}{w_{n-1}}
+\]
+is nonzero at every root $\xi$ of $P_n$ (using ordinary characteristic-zero derivatives before reduction and the actual immediate neighbor $P_{n-1}$).
+
+Combining nested $p$-adic disk covers, outside-cover rational ratio bounds, a length-independent base-$p$ carry invariant, an exact Chebyshev shifted-derivative identity, and a replacement adjacent-scale Newton cap, we establish unconditional squarefreeness and Christoffel--Darboux kernel nonvanishing across five infinite multi-digit families ($s>r$ throughout):
+\begin{enumerate}[label=(\arabic*),leftmargin=1.8em]
+\item \emph{Complete one-leading-digit short-tail sector:} $n=cp^r+d$ ($r\ge 2$, $1\le c<p$, $0\le d<p$).
+\item \emph{Odd higher-middle family:} $n=2p^r+cp^k$ ($k\ge 2$, $r\ge k+2$, odd $1\le c<p$), completing the shape $2p^r+cp^k$ for all $1\le c<p$.
+\item \emph{Arbitrary-length sparse even-middle induction ($j\ge 2$):} $n=2p^r+\sum_{a=1}^t c_a p^{k_a} + dp^j$ for \emph{any finite $t\ge 0$}, consecutive exponent gaps $\ge 2$, even $2\le c_a<p$, and odd $1\le d<p$.
+\item \emph{Arbitrary-length sparse even-middle induction with bottom-$p$ digit ($j=1$):} $n=2p^r+\sum_{a=1}^t c_a p^{k_a}+dp$ for any finite $t\ge 0$, consecutive gaps $\ge 2$, even $2\le c_a<p$, and odd $1\le d<p$, via a separate level-one disk ($\rho_1=1-1/(2p)$), the $\delta=p$ derivative endpoint, and a four-parity carry theorem for $(g_m^U)'$.
+\item \emph{Adjacent terminal-gap family ($k=3,j=2$):} $n=2p^r+cp^3+dp^2$ ($r\ge 5$, even $2\le c<p$, odd $1\le d<p$), together with the exact local combined-derivative condition isolating the sole remaining obstruction for general adjacent scales $k\ge 4$.
+\end{enumerate}
+\end{abstract}
+
+\maketitle
+
+\section{Introduction and main results}
+\label{sec:intro}
+
+For an indeterminate $q$, recall the Gaussian binomial coefficients $\qbin{n}{k}$, the Rogers--Szeg\H{o} polynomials $H_n(z;q)=\sum_{k=0}^n\qbin{n}{k}z^k$, and the associated symmetric three-term recurrence polynomials $P_n(X;q)$ given by
+\begin{equation}
+\label{eq:P-rec}
+P_0(X)=1,\qquad P_1(X)=X,\qquad P_{b+1}(X) = XP_b(X) - (1-q^b)P_{b-1}(X),
+\end{equation}
+linked to $H_n$ by the exact coordinate identity $H_n(v^2;q)=v^n P_n(v+v^{-1};q)$ (cf.~\cite{AKK09,dBS86,KKKKK26rs}). Write $w_0=1$ and $w_a = \prod_{v=1}^a (1-q^v)$. Whenever $q$ is a primitive $N$-th root of unity and $1\le n < N$, every recurrence edge $1-q^b$ ($1\le b<n$) is nonzero, so consecutive polynomials $P_n$ and $P_{n-1}$ are coprime (any common zero propagates back to $P_0=1$). Differentiating the standard three-term Christoffel--Darboux identity with respect to $X$ yields, at every root $\xi$ of $P_n$,
+\begin{equation}
+\label{eq:CD-kernel}
+K_n(\xi) := \sum_{a=0}^{n-1} \frac{P_a(\xi)^2}{w_a} = \frac{P_n'(\xi)P_{n-1}(\xi)}{w_{n-1}},
+\end{equation}
+where $P_n'$ is the \emph{ordinary} characteristic-zero $X$-derivative taken before any $p$-adic reduction, $P_{n-1}$ is the actual immediate neighbor, and the summands are algebraic squares $P_a(\xi)^2$ (not absolute squares). Because $P_{n-1}(\xi)\ne 0$ whenever $1\le n<N$, nonvanishing of $K_n(\xi)$ at every root of $P_n$ is equivalent to ordinary squarefreeness of $P_n$, which transfers directly to ordinary squarefreeness of $H_n$ whenever no root of $P_n$ equals $\pm 2$.
+
+In Part~I~\cite{KKKKK26rs}, we determined the exact local splitting and ordinary $z$-discriminant multiplicity of $H_{Ad+b}(z;q)$ at odd roots of unity $q=\omega$ of order $d$, eliminated the overlap guard uniformly via a $2$-adic Wronskian theorem, and proved static squarefreeness of $H_b(z;\zeta_{p^s})$ for $0\le b<p$, leaving open the multi-digit base-$p$ static regime $p\le n < p^s$ at prime-power orders $d=p^s$ (Conjecture~7.1 of~\cite{KKKKK26rs}).
+
+This sequel resolves five infinite multi-digit base-$p$ families uniformly over all odd primes $p$ and all characteristic-zero primitive $p^s$-th roots of unity $q$ ($s>r$). Crucially, our proofs of Theorems~\ref{thm:sparse-j2} and~\ref{thm:sparse-bottom} are genuine \emph{arbitrary-length} inductions in the number $t\ge 0$ of base-$p$ digits, governed by a single length-independent invariant with no constant degrading as $t$ grows.
+
+\begin{theorem}[Complete one-leading-digit short-tail sector]
+\label{thm:short-tail}
+Let $p$ be an odd prime, let $r\ge 2$, $s>r$, $1\le c<p$, $0\le d<p$, and set $n=cp^r+d$. For every characteristic-zero primitive $p^s$-th root of unity $q$, the original polynomials $P_n(X;q)$ and $H_n(z;q)$ are squarefree, and $K_n(\xi)\ne 0$ at every root $\xi$ of $P_n$.
+\end{theorem}
+
+\begin{theorem}[Odd higher-middle completion]
+\label{thm:odd-middle}
+Let $p$ be an odd prime, let $k\ge 2$, $r\ge k+2$, $s>r$, let $1\le c<p$ be odd, and set $n = 2p^r + cp^k$. For every characteristic-zero primitive $p^s$-th root of unity $q$, $P_n(X;q)$ and $H_n(z;q)$ are squarefree, and $K_n(\xi)\ne 0$ at every root $\xi$ of $P_n$. Moreover, at every strict level-$k$ interior root of $P_n$,
+\[
+v(P_n') = D_f + v(P_{2p^r}),\qquad
+v(P_{n-1}) = G + v(P_{2p^r}),\qquad
+v(K_n) = p^k - p + 2\bigl(v(P_{2p^r}) - W(p^r)\bigr),
+\]
+where $G=W((cp^k-1)/2)$ and $D_f=G+p^k-p$.
+\end{theorem}
+
+\begin{theorem}[Arbitrary-length sparse even-middle induction, $j\ge 2$]
+\label{thm:sparse-j2}
+Let $p$ be an odd prime, let $t\ge 0$ be any finite integer, and let exponents $e_0=r > e_1=k_1 > \cdots > e_t=k_t > e_{t+1}=j \ge 2$ satisfy $e_i - e_{i+1}\ge 2$ for every $0\le i\le t$. Let $c_1,\ldots,c_t$ be even integers with $2\le c_a<p$, let $d$ be odd with $1\le d<p$, let $s>r$, and set
+\begin{equation}
+\label{eq:n-sparse-j2}
+n = 2p^r + \sum_{a=1}^t c_a p^{k_a} + d p^j.
+\end{equation}
+Then for every characteristic-zero primitive $p^s$-th root of unity $q$, $P_n(X;q)$ and $H_n(z;q)$ are squarefree, and $K_n(\xi)\ne 0$ at every root $\xi$ of $P_n$.
+\end{theorem}
+
+\begin{theorem}[Arbitrary-length sparse even-middle induction, bottom-$p$ digit $j=1$]
+\label{thm:sparse-bottom}
+Let $p$ be an odd prime, let $t\ge 0$ be any finite integer, and let exponents $e_0=r > e_1=k_1 > \cdots > e_t=k_t > e_{t+1}=1$ satisfy $e_i - e_{i+1}\ge 2$ for every $0\le i\le t$. Let $c_1,\ldots,c_t$ be even integers with $2\le c_a<p$, let $d$ be odd with $1\le d<p$, let $s>r$, and set
+\begin{equation}
+\label{eq:n-sparse-bottom}
+n = 2p^r + \sum_{a=1}^t c_a p^{k_a} + dp.
+\end{equation}
+Then for every characteristic-zero primitive $p^s$-th root of unity $q$, $P_n(X;q)$ and $H_n(z;q)$ are squarefree, and $K_n(\xi)\ne 0$ at every root $\xi$ of $P_n$.
+\end{theorem}
+
+\begin{theorem}[Adjacent terminal-gap family at $k=3,j=2$]
+\label{thm:adjacent-k3}
+Let $p$ be an odd prime, let $2\le c<p$ be even, let $1\le d<p$ be odd, let $r\ge 5$, $s>r$, and set
+\begin{equation}
+\label{eq:n-adj-k3}
+n = 2p^r + cp^3 + dp^2.
+\end{equation}
+Then for every characteristic-zero primitive $p^s$-th root of unity $q$, $P_n(X;q)$ and $H_n(z;q)$ are squarefree, and $K_n(\xi)\ne 0$ at every root $\xi$ of $P_n$.
+\end{theorem}
+
+Table~\ref{tab:families} summarizes the five families, their minimum degrees, and the key valuation mechanism governing each regime. By composing Theorems~\ref{thm:short-tail}--\ref{thm:adjacent-k3} with~\cite[Theorem~1.1]{KKKKK26rs}, whenever $n$ falls in any of these families at order $d=p^s$, the static discriminant guard $\Disc H_n(z;\zeta_{p^s})\ne 0$ is unconditionally satisfied. (Note that Theorem~\ref{thm:short-tail} consolidates a seven-branch union across parities of $c$ and $d$; root geometry and kernel valuations differ across branches, and no single all-root formula covers all seven branches simultaneously.)
+
+\begin{table}[ht]
+\centering
+\caption{Summary of the five multi-digit base-$p$ squarefreeness families at primitive $p^s$-th roots of unity ($s>r$, $p$ odd prime).}
+\label{tab:families}
+\begin{tabular}{llll}
+\toprule
+Theorem & Degree shape $n$ & Min.\ $n$ ($p=3$) & Key valuation mechanism \\
+\midrule
+Thm.~\ref{thm:short-tail} & $cp^r + d$ ($0\le d<p$) & $9$ ($r=2$) & $7$-branch single-scale cover ($\beta_r=p^{\lfloor r/2\rfloor}$) \\
+Thm.~\ref{thm:odd-middle} & $2p^r + cp^k$ ($c$ odd, $k\ge 2$) & $171$ ($r=4$) & Outside-cover rational ratio $B/C, B'/C$ \\
+Thm.~\ref{thm:sparse-j2} & $2p^r+\sum c_a p^{k_a}+dp^j$ ($j\ge 2$) & $14{,}751$ ($t=2$) & Length-independent carry invariant, $\delta=p^2$ \\
+Thm.~\ref{thm:sparse-bottom} & $2p^r+\sum c_a p^{k_a}+dp$ ($j=1$) & $4{,}917$ ($t=2$) & Level-$1$ disk $\rho_1$, $\delta=p$, Chebyshev $g'$ \\
+Thm.~\ref{thm:adjacent-k3} & $2p^r + cp^3 + dp^2$ (gap $1$) & $549$ ($r=5$) & Replacement cap $\lambda=L/(2p)$, $Y^p$ initial \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The paper is organized as follows. Section~\ref{sec:framework} sets up the $p$-adic valuation machinery, nested disk covers, finite Newton/continuant identities, arbitrary-prefix core bounds, and the outside-cover ratio lemma. Section~\ref{sec:short-odd} summarizes the short-tail sector (Theorem~\ref{thm:short-tail}) and proves Theorem~\ref{thm:odd-middle}. Section~\ref{sec:sparse-j2} establishes the arbitrary-length sparse carry lemma and proves Theorem~\ref{thm:sparse-j2}. Section~\ref{sec:sparse-bottom} develops the $\delta=p$ endpoint, exact Chebyshev shifted-$g'$ four-parity lemma, and arbitrary-prefix level-one disk to prove Theorem~\ref{thm:sparse-bottom}. Section~\ref{sec:adjacent} proves the replacement adjacent cap, Theorem~\ref{thm:adjacent-k3}, and isolates the exact local combined-derivative obstruction for general adjacent $k\ge 4$. Section~\ref{sec:prior} relates our results to prior literature and states open problems.
+
+\section{Nested $p$-adic disks, finite continuants, and outside-cover ratios}
+\label{sec:framework}
+
+Fix an odd prime $p$, an exponent $s\ge 3$, and a characteristic-zero primitive $p^s$-th root of unity $q$. Choose an algebraic $p$-adic embedding into $\overline{\Q}_p$ with uniformizer $t_0 := q-1$ normalized by $v(t_0) = 1$, so that $E_p := v(p) = (p-1)p^{s-1}$ and $v(1-q^a) = V(a) := p^{\ord_p(a)}$ for every integer $1\le a < p^s$. Define the cumulative valuation function
+\begin{equation}
+\label{eq:VW-def}
+W(0)=0,\qquad W(b) = \sum_{a=1}^b V(a) \qquad (1\le b < p^s).
+\end{equation}
+Direct calculation gives $W(p^k) = p^k + k(p-1)p^{k-1}$ and $W(p^k-1) = k(p-1)p^{k-1}$ for every $k\ge 0$. Hence $W$ is \emph{base-$p$ digit-linear} ($W(\sum d_i p^i) = \sum d_i W(p^i)$ for $0\le d_i<p$) and \emph{superadditive}:
+\begin{equation}
+\label{eq:W-superadd}
+W(a+b) - W(a) - W(b) = \sum_{i\ge 1} \kappa_i(a,b)\,(p^i - p^{i-1}) \ge 0,
+\end{equation}
+where $\kappa_i(a,b)\in\{0,1\}$ counts the base-$p$ carry across $p^i$ in $a+b$, with equality iff $a+b$ is carry-free in base $p$.
+
+\subsection{Nested $p$-adic disks and finite Newton identities}
+
+For every scale level $\ell\ge 2$, define the disk count $\beta_\ell$, scale $D_\ell$, radius $\rho_\ell$, capped sum $T_\ell$, and remainder $R_\ell$ by
+\begin{equation}
+\label{eq:level-def}
+\beta_\ell = p^{\lfloor \ell/2\rfloor},\qquad D_\ell = p^\ell,\qquad
+\rho_\ell = \begin{cases} \beta_\ell/2, & \ell\text{ even},\\ (2p-1)p^{\lfloor \ell/2\rfloor - 1}/2, & \ell\text{ odd},\end{cases}
+\end{equation}
+and $T_\ell(b) = \sum_{a=1}^b \min(V(a),\rho_\ell)$, $R_\ell(b) = W(b) - T_\ell(b)$. At level $\ell=1$, define separately a \emph{single} disk ($\beta_1=1$) centered at $z=-1$ (equivalently $X=0$) with
+\begin{equation}
+\label{eq:level1-def}
+\rho_1 = 1 - \frac{1}{2p},\qquad T_1(b) = \rho_1 b,\qquad R_1(b) = W(b) - \rho_1 b.
+\end{equation}
+For $\ell\ge 2$, the $\beta_\ell$ closed $H$-disks have centers $z = -q^a$ ($0\le a < \beta_\ell$) and radius valuation $\rho_\ell$ (i.e., $v(z+q^a)\ge\rho_\ell$). Under $z = v_0^2$ and $X = v_0 + v_0^{-1}$ with $v_0$ near $i$, the matching $X$-centers are $x_a = i(q^{a/2}-q^{-a/2})$, and $z(X)$ is an analytic isometry with unit ordinary derivative $dz/dX$ preserving Gauss weights on every disk; moreover, both orientations $q$ and $q^{-1}$ share the exact same $X$-disks. Since $\rho_{\ell+1} > \rho_\ell$ and matching centers differ by valuation $\ge \beta_\ell > \rho_\ell$, higher-level disks are strictly nested inside their parent lower-level disks (and every $\ell\ge 2$ disk lies strictly inside the singleton level-$1$ disk since $v(q^a-1)\ge 1 > \rho_1$).
+
+Let $N_h(z) = \prod_{a=0}^{h-1}(z+q^a)$ and $Q_a = \prod_{v=1}^a(1-q^{2v})$. The finite Newton expansion of $H_b(z;q)$, its ordinary $z$-derivative, and the exact off-root chain rule relating $H_b'$ and $P_b'$ are
+\begin{align}
+H_b(z) &= \sum_{h\equiv b\pmod 2} \frac{w_b N_h(z)}{w_h Q_{(b-h)/2}}, \qquad
+H_b'(z) = \sum_{\substack{h+\delta+2a=b\\ \delta\ge 1}} \frac{w_b z^{\delta-1} N_h(z)}{w_h Q_a(1-q^\delta)}, \label{eq:newton}\\
+H_b'(v_0^2) &= v_0^{b-2}\Bigl(\frac{b}{2}P_b(X) + \frac{v_0 - v_0^{-1}}{2} P_b'(X)\Bigr). \label{eq:chain-rule}
+\end{align}
+On every level-$\ell$ disk ($\ell\ge 1$), every Newton product $N_h$ has coefficientwise Gauss weight $\ge T_\ell(h)$, and $v(Q_a)=W(a)$ since $p$ is odd.
+
+\subsection{Shifted continuants, finite connections, and legality}
+
+For any legal prefix $U$ and suffix $m$ with $n = U + m < p^s$, define the \emph{actual shifted continuants} $f_b^U, g_b^U$ by $f_0^U=1$, $f_1^U=X$, $g_0^U=0$, $g_1^U=1$, and $u_{b+1}^U = X u_b^U - (1-q^{U+b})u_{b-1}^U$. Induction on $m$ gives the exact splitting and determinant identities
+\begin{align}
+P_{U+m} &= f_m^U P_U - (1-q^U) g_m^U P_{U-1}, \label{eq:cont-split}\\
+g_m^U P_{U+m-1} - g_{m-1}^U P_{U+m} &= \Bigl(\prod_{j=1}^{m-1}(1-q^{U+j})\Bigr) P_U. \label{eq:cont-det}
+\end{align}
+Moreover, writing $C_m^U = \prod_{a=1}^m(1-q^{U+a})$, the shifted continuants satisfy the exact finite connections in terms of $P_j(q)$ and $P_j(q^{-1})$:
+\begin{align}
+f_m^U &= C_m^U \sum_{a=0}^m \frac{1-q^U}{1-q^{U+a}}\, \frac{(-1)^a q^{a(a+1)/2} P_{m-a}(q) P_a(q^{-1})}{w_{m-a} w_a} \quad\text{($a=0$ ratio $=1$)}, \label{eq:f-conn}\\
+g_m^U &= C_m^U \sum_{\ell=1}^m \frac{(-1)^{\ell-1} q^{\ell(\ell-1)/2} P_{m-\ell}(q) P_{\ell-1}(q^{-1})}{w_{m-\ell} w_{\ell-1}(1-q^{U+\ell})}. \label{eq:g-conn}
+\end{align}
+Note that at $U=0$ and odd $m=2u+1$, setting $X=0$ in~\eqref{eq:P-rec} gives the exact recurrence value $g_m^0(0) = (-1)^u Q_u$, of valuation $v(g_m^0(0)) = W(u)$.
+
+In Theorems~\ref{thm:odd-middle}--\ref{thm:adjacent-k3}, every degree satisfies the geometric legality bound
+\begin{equation}
+\label{eq:legal-bound}
+n < \Bigl(2 + \frac{p-1}{p^2-1}\Bigr) p^r = \Bigl(2 + \frac{1}{p+1}\Bigr)p^r < 3p^r \le p^{r+1} \le p^s
+\end{equation}
+(and for Theorem~\ref{thm:adjacent-k3}, $n = 2p^r + cp^3 + dp^2 < 2p^r + p^4 < 3p^r \le p^s$ since $r\ge 5$). Consequently every recurrence edge $1-q^a$ ($1\le a < n$) and every denominator in~\eqref{eq:f-conn}--\eqref{eq:g-conn} is nonzero.
+
+\subsection{Deep cap, half-$W$ cap, arbitrary even-prefix covers, and outside ratios}
+
+We collect the three foundational disk lemmas reused uniformly across Sections~\ref{sec:short-odd}--\ref{sec:adjacent}.
+
+\begin{lemma}[Deep cap and half-$W$ cap]
+\label{lem:caps}
+Let $M=p^k$ ($k\ge 1$).
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item \emph{(Deep cap)} If $\ell\ge k+2$ and $0\le b < pM$, then on every full level-$\ell$ disk (in both $q$ and $q^{-1}$ orientations), $R_\ell(b) \le W(\lfloor b/2\rfloor)$ with equality only for $b\in\{0,1\}$. Setting $h_b := W(b)-W(\lfloor b/2\rfloor)$,
+\begin{equation}
+\label{eq:deep-cap}
+\wt(P_b) \ge h_b,\qquad
+\wt(P_b') \ge \begin{cases} h_b - p, & b\text{ odd},\\ h_b - (p-1), & b\text{ even},\end{cases}
+\end{equation}
+and for even $b$, the weight-$h_b$ initial of $P_b$ is its nonzero constant $P_b(0)$.
+\item \emph{(Half-$W$ cap)} On every full level-$k$ disk ($k\ge 1$) and $0\le b<pM$, $R_k(b)\le W(b)/2$ with equality precisely when $M\mid b$. Consequently $\wt(P_b)\ge W(b)/2$ for all $b<pM$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Set $S_\ell(b):=W(b)/2 - R_\ell(b)$, which is base-$p$ digit-linear for $b<p^\ell$. At level $\ell$, for $a\ge \lfloor\ell/2\rfloor$ we have $S_\ell(p^a)=(\ell-a)(p-1)p^{a-1}/2$, and for $a<\lfloor\ell/2\rfloor$ we have $R_\ell(p^a)=0$ and $S_\ell(p^a)=W(p^a)/2$. When $\ell\ge k+2$ and $b<pM$, comparing $R_\ell(p^a)$ with $W(\lfloor b/2\rfloor)$ via $W(b)-2W(\lfloor b/2\rfloor)\le p^a$ yields $R_\ell(b)\le W(\lfloor b/2\rfloor)$ strictly for $b\ge 2$ (including $k=1,\ell=3$ where $R_3(b)=\lfloor b/p\rfloor/2$, and $\ell\ge 4$ where $R_\ell(b)=0$). Applying~\eqref{eq:newton} and superadditivity of $W$ gives~\eqref{eq:deep-cap}. At level $k$, $S_k(p^a)>0$ for $a<k$ and $S_k(M)=0$ (including $k=1$ where $S_1(1)=(p-1)/(2p)>0$ and $S_1(p)=0$), proving~(b).
+\end{proof}
+
+Define the normalized monic Hermite polynomials
+\begin{equation}
+\label{eq:Me-def}
+M_e(Z) = e!\sum_{a=0}^{\lfloor e/2\rfloor} \frac{Z^{e-2a}}{2^a a!(e-2a)!},
+\end{equation}
+satisfying $M_e(Z) = Z M_{e-1}(Z) + (e-1)M_{e-2}(Z)$, so $M_e$ and $M_{e-1}$ are coprime modulo $p$ whenever $1\le e < p$, and $M_{2v}(0) = (2v)!/(2^v v!)\not\equiv 0\pmod p$.
+
+\begin{proposition}[Arbitrary-prefix core cover and original neighbor derivative]
+\label{prop:prefix-cover}
+Let $\ell\ge 2$, $D=p^\ell$, and let $U = QD < p^s$ have nonzero terminal base-$p$ digit $e = Q\bmod p$ ($1\le e<p$). Set $J = T_\ell(U)$, $E = J - D/2$, $C = P_U$, and $B = P_{U-1}$. On every full level-$\ell$ disk (with local normalized variable $Y$ and $Z_{\mathrm{init}} = \gamma_a Y^{D/\beta_\ell}$, $\gamma_a\ne 0$):
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item $\wt(C)\ge J$, $\wt(C')\ge J+D/2-p$, $\wt(B)\ge E$, and the boundary initials ($Y\ne 0$) of $C$ and $C',B$ are nonzero scalars times $Y^{(U-eD)/\beta_\ell}M_e(Z)$ and $Y^{(U-eD)/\beta_\ell}M_{e-1}(Z)$, respectively. In particular, each of the $\beta_\ell$ disks contains exactly $U/\beta_\ell$ roots of $C$ counted with multiplicity, exhausting all $U$ roots of $C$ (a complete monic cover).
+\item When $e$ is even ($2\le e<p$), the actual original neighbor derivative satisfies $\wt(B')\ge E$ on every full level-$\ell$ disk (with no restriction on the upper digits of $U$ and no assumption that $C$ is squarefree).
+\item At $U_0 = 2p^r$ ($\ell=r$), $C_0 = P_{2p^r}$ has exact valuation $J=W(p^r)$ on every strict level-$r$ interior (since $M_2(0)=1$ and the $Y$-prefix factor is absent).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part~(a) follows from the general block inequality on $F(x):=R_\ell(U)-R_\ell(U-x)$: writing $x=lD+v+2uD+2w$ ($0\le v,w<D$), superadditivity of $W$ gives
+\begin{equation}
+\label{eq:block-ineq}
+F(lD+v+2uD+2w) - W(uD+w) \ge lR_\ell(D) + D[W(l)-l] + D[W(u)-u] + F_0(v+2w) - W(w),
+\end{equation}
+where $F_0(\eps D)=\eps R_\ell(D)$ and $F_0(\eps D+z)=\eps R_\ell(D)+D-\rho_\ell+R_\ell(z-1)$ for $0<z<D$. Minimizing the Newton series~\eqref{eq:newton} yields the exact equality set $a=uD$ ($0\le 2u\le e$) for $C$ and $\delta=p^2, a=uD$ for $C'$, summing via block factorial units to $M_e(Z)$ and $M_{e-1}(Z)$ (with off-root chain-rule correction in~\eqref{eq:chain-rule} bounded below by $J+\ell E_p > J+D/2-p$).
+
+For~(b), an ordinary $H_{U-1}'$ term with $h+\delta+2a=U-1$ requires $F(\delta+1+2a)-W(a)-V(\delta)\ge D/2$. Writing $\delta+1=lD+v$ ($0\le v<D$) in~\eqref{eq:block-ineq}:
+\begin{itemize}[leftmargin=1.5em]
+\item If $v=0$, then $V(\delta)=1$ and the block part is $\ge R_\ell(D)-1\ge D/2$.
+\item If $v=1$, then $l\ge 1$; subtracting $D V(l)$ leaves $R_\ell(D)-D > 0$ from the block part plus $\ge D/2$ from the proper block.
+\item If $2\le v<D$, the proper block gives $\ge D/2 + W(v-1)/2$, strictly unless $D\mid (v+2w)$. Since $W(y)/2 - V(y)\ge -1/2$ and scores are half-integral, strictness suffices; in the multiple case, the only negative remainders have $v-1\in\{1,p\}$ (so $v$ is even and $v+2w=2D$), where the exact small-block expression minus $V(v-1)$ is $D+W(v/2-1)-V(v-1)\ge D-p\ge D/2$.
+\end{itemize}
+The chain-rule correction in~\eqref{eq:chain-rule} has weight $\ge E$, establishing $\wt(B')\ge E$. Part~(c) is immediate from $U_0-2D=0$ and $M_2(0)=1$.
+\end{proof}
+
+\begin{lemma}[Outside-cover rational ratio bounds]
+\label{lem:outside-ratio}
+Let $U = QD < p^s$ ($\ell\ge 2$, $D=p^\ell$, $e=Q\bmod p$ even) have the complete monic level-$\ell$ cover of Proposition~\ref{prop:prefix-cover}(a), with $C=P_U$ and $B=P_{U-1}$. Let $X$ be any point near $0$ (in a parent strict interior) lying \emph{outside} all closed level-$\ell$ disks, and put $\tau := \max_{0\le b<U} v(z+q^b) < \rho_\ell$. Then on the local radius-$\rho_\ell$ disk centered at $X$, $C$ is an analytic unit and the coefficientwise ordinary-derivative bounds
+\begin{equation}
+\label{eq:outside-ratios}
+\wt(C'/C) \ge -\tau,\qquad
+\wt(B/C) \ge -D/2 + \rho_\ell - \tau,\qquad
+\wt(B'/C) \ge -D/2 - \tau
+\end{equation}
+hold (covering arbitrary ties among nearest centers and requiring no squarefreeness of $C$).
+\end{lemma}
+
+\begin{proof}
+Because every root of $C$ lies in a closed level-$\ell$ disk at valuation $\ge \rho_\ell$ from its disk center while $v(z+q^b)\le\tau<\rho_\ell$ everywhere on the local radius-$\rho_\ell$ disk around $X$, the distance from any point of this local disk to each root of $C$ equals its constant distance to that root's center ($\le\tau$). Hence $C$ is an analytic unit on this disk, monic factorization gives $\wt(C'/C)\ge -\tau$, and $v(H_U) = v(N_U)$ (as each disk holds $U/\beta_\ell$ roots of $H_U$ and $U/\beta_\ell$ factors of $N_U$).
+
+For any consecutive string of $2h+1$ center indices, choosing a maximizing index in the string (value $\tau_0\le\tau$) and splitting left/right lengths $h_1+h_2=2h$ gives $\sum_{\text{string}} v(z+q^b) \le \tau_0 + T_\ell(h_1)+T_\ell(h_2) \le \tau + T_\ell(2h)$ by superadditivity of $T_\ell$. Dividing each term $j=U-1-2h$ of the Newton series~\eqref{eq:newton} for $H_{U-1}$ by $N_U$ and using the global digit-linear bound $W(x)/2 - R_\ell(x) \le D/2 - \rho_\ell$ yields $v(H_{U-1}/H_U) \ge -D/2 + \rho_\ell - \tau$ coefficientwise on the local disk. Transferring via the unit-derivative isometry $z(X)$ gives $\wt(B/C) \ge L_0 := -D/2 + \rho_\ell - \tau$. Ordinary Gauss differentiation on the radius-$\rho_\ell$ disk gives $\wt((B/C)') \ge L_0 - \rho_\ell = -D/2 - \tau$, and $B'/C = (B/C)' + (B/C)(C'/C)$ yields $\wt(B'/C) \ge \min(-D/2-\tau, -D/2+\rho_\ell-2\tau) = -D/2-\tau$.
+\end{proof}
+
+\section{Short-tail sector and odd higher-middle completion}
+\label{sec:short-odd}
+
+\begin{proof}[Proof sketch of Theorem~\ref{thm:short-tail}]
+At $n=cp^r+d$ ($r\ge 2$, $1\le c<p$, $0\le d<p$), the zero-tail case $d=0$ is immediate from Proposition~\ref{prop:prefix-cover}(a): on the $\beta_r$ disks, the normalized root and ordinary-derivative initials are $M_c(Z)$ and $M_{c-1}(Z)$ (coprime since $c<p$), settling all $cp^r$ roots. For $1\le d<p$, splitting $P_n = f_d^{cp^r}P_{cp^r} - (1-q^{cp^r})g_d^{cp^r}P_{cp^r-1}$ partitions the analysis into the six positive-tail branches ($c=1$ odd/even $d$; even $c$ odd/even $d$; odd $c\ge 3$ odd/even $d$): each root on a level-$r$ boundary has simple coprime Hermite residual or dominant tail derivative, while roots in strict level-$r$ interiors (present when $c$ is odd or $d>0$) are resolved by matching the short-$d$ tail valuation against the exact $P_{cp^r}$/neighbor valuations. Since every recurrence edge below $n$ is nonzero, $P_n$ and $P_{n-1}$ are coprime, giving $K_n(\xi)\ne 0$ by~\eqref{eq:CD-kernel}. Because $P_n(X)\equiv X^n\pmod{t_0}$, no root equals $\pm 2$, and $H_n(0)=1$ transfers simplicity to $H_n$; Galois conjugacy covers every primitive $p^s$-th root.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:odd-middle}]
+Set $N=p^r$, $M=p^k$, $m=cM$ ($c=2a+1$ odd, $1\le c<p$), $u=(m-1)/2$, $G=W(u)$, $K=W(N)$, $E=K-N/2$, $C=P_{2N}$, $B=P_{2N-1}$, $b_0=1-q^{2N}$, $f=f_m^{2N}$, $g=g_m^{2N}$, $\rho=\rho_r$, $\sigma=\rho_k$, and $D_f=G+M-p$. By~\eqref{eq:cont-split}, $P_n = fC - b_0 gB$.
+
+Applying Proposition~\ref{prop:prefix-cover}(a) directly to $n=2N+cM$ at level $k$ exhausts all $n$ roots inside the $\beta_k$ closed level-$k$ disks and settles the $(c-1)M$ simple level-$k$ boundary roots (since $M_c$ and $M_{c-1}$ are coprime away from $Y=0$). Every remaining root lies in a strict level-$k$ interior.
+
+\smallskip
+\noindent\emph{Step 1 (Tail estimates on full $k$-disks):}
+By Lemma~\ref{lem:caps}(b) and endpoint reflection $W(m-\ell)+W(\ell-1)=W(m-1)=2G$, every term of~\eqref{eq:g-conn} for $g_m^0$ has weight $\ge G+M-V(\ell)\ge G$, with equality requiring $M\mid \ell$. At $Y=0$, only odd multiples $\ell=bM$ survive (even polynomial indices), summing to the exact recurrence constant $g_m^0(0)=(-1)^u Q_u$ of valuation $G$. Thus $g_m^0$ has exact valuation $G$ on every strict $k$-interior and $\wt((g_m^0)')\ge G-\sigma$ on full $k$-disks. Meanwhile, Proposition~\ref{prop:prefix-cover}(a) applied to $H_m$ gives $H_m'$ initial $M_{c-1}(\gamma_b Y^{L_k})$ at weight $D_f=G+M-p$; since $c-1$ is even and $<p$, $M_{c-1}(0)\ne 0$, and the off-root term in~\eqref{eq:chain-rule} has weight $\ge G+M/2+kE_p > D_f$, so $P_m'$ has exact valuation $D_f$ on every strict $k$-interior.
+
+For the actual shift $U=2N$, $\eta := C_m^{2N}/w_m$ satisfies $v(\eta-1)\ge N-M$, and~\eqref{eq:f-conn}--\eqref{eq:g-conn} give $\Delta_f = f - \eta P_m$ and $\Delta_g = g - \eta g_m^0$ satisfying $\wt(\Delta_f')\ge G+N-M/2-\sigma > D_f$ and $\wt(\Delta_g)\ge G+N-M > G$ (as $N\ge p^2 M$ and $\sigma < M$). Hence on every strict $k$-interior,
+\[
+v(f') = D_f,\qquad v(g) = G,\qquad \wt(g') \ge G-\sigma.
+\]
+
+\smallskip
+\noindent\emph{Step 2 (Inside the closed level-$r$ cover):}
+On full level-$r$ disks, Lemma~\ref{lem:caps}(a) upgrades the tail bounds to $f\ge G+M$, $f'$ exact $D_f$, $g$ exact $G$, and $g'\ge G-(p-1)$. At a level-$r$ boundary root where $M_2(Z)=0$, $B$ has exact valuation $E$; setting $\delta=v(f)-G\ge M$ and $\gamma=v(C)-K\ge 0$, the root equation $fC=b_0 gB$ forces $\delta+\gamma=N/2$. In $P_n'=f'C+fC'-b_0 g'B-b_0 gB'$, the term $f'C$ has exact valuation $K+D_f+\gamma$, beating the other three terms by at least $2\delta-M$, $\delta-M+1$, and $\delta-M+p$ (all $>0$). Where $M_2(Z)\ne 0$ (including every strict level-$r$ interior by Proposition~\ref{prop:prefix-cover}(c)), $C$ has exact valuation $K$ and the three gaps are $N/2$, $N/2-M+1$, $N/2-M+p > 0$. Thus every root inside the closed $r$-cover is simple with $v(P_n') = D_f + v(C)$.
+
+\smallskip
+\noindent\emph{Step 3 (Outside the closed level-$r$ cover):}
+At a strict $k$-interior root outside all closed $r$-disks, $\sigma < \tau < \rho$. By Lemma~\ref{lem:outside-ratio}, $C$ is an analytic unit locally and $f=b_0 g(B/C)$ gives $v(f) \ge G + N/2 + \rho - \tau$. Dividing $P_n'$ by $C$, the exact term $f'$ ($v(f')=D_f$) beats the three competing terms $f(C'/C)$, $b_0 g'(B/C)$, and $b_0 g(B'/C)$ by at least
+\[
+N/2 - M + p + \rho - 2\tau,\qquad N/2 - M + p + \rho - \tau - \sigma,\qquad N/2 - M + p - \tau.
+\]
+Because $M\le N/p^2$, $\rho < N/p$, and $p\ge 3$, we have $M+\rho < (1/p^2+1/p)N \le \frac{4}{9}N < N/2$, so all three gaps are strictly positive. Thus $v(P_n') = D_f + v(C)$ everywhere in strict $k$-interiors.
+
+Finally,~\eqref{eq:cont-det} gives $g P_{n-1} = \prod_{j=1}^{m-1}(1-q^{2N+j})C$ at any $P_n$ root, where the scalar product has valuation $2G$ and $v(g)=G$, yielding $v(P_{n-1}) = G + v(C)$. Since $W(n-1)=2K+2G$,~\eqref{eq:CD-kernel} yields $v(K_n) = D_f + G + 2v(C) - (2K+2G) = M-p + 2(v(C)-K)$, which is finite (hence $K_n\ne 0$). Transfer to $H_n$ and all primitive $p^s$-th roots follows as in Theorem~\ref{thm:short-tail}.
+\end{proof}
+
+\section{Arbitrary-length sparse even-middle induction ($j\ge 2$)}
+\label{sec:sparse-j2}
+
+Assume the hypotheses of Theorem~\ref{thm:sparse-j2}. For each $0\le i\le t$, define the even prefix, remaining odd suffix, and scales
+\begin{equation}
+\label{eq:ind-vars}
+U_i = 2p^r + \sum_{a=1}^i c_a p^{k_a},\qquad m_i = n - U_i,\qquad D_i = p^{e_i},\qquad M_i = p^{e_{i+1}},\qquad L = p^j,
+\end{equation}
+along with $u_i = (m_i-1)/2$, $G_i = W(u_i)$, $C_i = P_{U_i}$, $B_i = P_{U_i-1}$, $f_i = f_{m_i}^{U_i}$, and $g_i = g_{m_i}^{U_i}$. Notice that every base-$p$ digit of $u_i$ is $\le h := (p-1)/2$: its digits below $j$ are all $h$, its $j$-th digit is $(d-1)/2 \le h-1$, and every higher nonzero digit is $c_a/2 \le h$. Consequently, independently of the number of remaining digits,
+\begin{equation}
+\label{eq:sparse-balance}
+W(m_i-1) = 2G_i,\qquad W(m_i) = 2G_i + L,\qquad u_i\bmod p^b < \frac{p^b-1}{2}\quad\text{for every } b > j.
+\end{equation}
+
+\begin{lemma}[Arbitrary-length sparse-suffix carry lemma]
+\label{lem:sparse-carry}
+For any suffix $m = m_i$ with $u=(m-1)/2$ and $G=W(u)$, every $0\le x\le u$ satisfies
+\begin{equation}
+\label{eq:sparse-carry}
+W(u-x) + W(x) + V(2x+1) \le G + L.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $b = \ord_p(2x+1)$. If $b\le j$, then $V(2x+1)\le L$ and superadditivity $W(u-x)+W(x)\le W(u)=G$ immediately give~\eqref{eq:sparse-carry}. If $b > j$, then $2x+1\equiv 0\pmod{p^b}$ implies $x\bmod p^a = (p^a-1)/2 > u\bmod p^a$ for every $j < a \le b$ by~\eqref{eq:sparse-balance}. Hence adding $x$ and $u-x$ to obtain $u$ forces a base-$p$ carry across $p^a$ for every $j<a\le b$. By~\eqref{eq:W-superadd}, the carry defect $G - W(x) - W(u-x)$ is at least $\sum_{a=j+1}^b (p^a - p^{a-1}) = p^b - L = V(2x+1) - L$, proving~\eqref{eq:sparse-carry}.
+\end{proof}
+
+\begin{proposition}[Length-independent scale invariant for $j\ge 2$]
+\label{prop:sparse-inv}
+For every $0\le i\le t$, the actual shifted continuants $f_i,g_i$ satisfy:
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item On every full level-$e_i$ disk: $\wt(f_i)\ge G_i+L$, $f_i'$ has exact weight $G_i+L-p$ with nonzero constant initial, $g_i$ has exact weight $G_i$ with nonzero constant initial, and $\wt(g_i')\ge G_i-(p-1)$.
+\item On every full level-$e_{i+1}$ disk: $\wt(g_i)\ge G_i+L-M_i$ and $\wt(g_i')\ge G_i+L-M_i-\rho_{e_{i+1}}$, while on every \emph{strict} level-$e_{i+1}$ interior $f_i'$ has exact valuation $G_i+L-p$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Drop subscripts $i$ and write $D=D_i$, $M=M_i$ ($D\ge p^2 M$, $L\le M$).
+
+\smallskip
+\noindent\emph{Deep disks (level $e_i$):} Lemma~\ref{lem:caps}(a) gives $\wt(P_m)\ge G+L$. For $H_m'$ in~\eqref{eq:newton}, the elementary bounds $V(2a+1)-W(a)\le p$ (unique equality at $a=(p^2-1)/2$) and $V(a)-W(a)\le 0$ force the unique least term at $h=0$, $\delta=p^2$, $a=u-(p^2-1)/2$ (carry-free because $j\ge 2$ gives two bottom half-digits $h$ in $u$), giving exact constant initial of $P_m'$ at weight $G+L-p$ (with chain-rule correction $\ge G+L$). For $g_m^0$ in~\eqref{eq:g-conn}, Lemma~\ref{lem:sparse-carry} bounds odd $\ell=2x+1$ terms by score $\le G+L$ (yielding weight $\ge G$, with constant initials since both $P$ indices are even), while even $\ell=2x$ terms have score $W(u-x)+W(x-1)+V(2x) = W(u-x)+W(x)\le G$ (starting at weight $G+L$). The exact constant $g_m^0(0)=(-1)^u Q_u$ of valuation $G$ certifies nonvanishing of the constant weight-$G$ initial, and Lemma~\ref{lem:caps}(a) gives $\wt((g_m^0)')\ge G-(p-1)$.
+
+\smallskip
+\noindent\emph{Full lower disks (level $e_{i+1}$):} By Lemma~\ref{lem:caps}(b) and superadditivity, every $H_m'$ term has score $R_{e_{i+1}}(h)+W(a)+V(\delta)\le W(m-\delta)/2+V(\delta)\le G+V(\delta)-W(\delta-1)/2\le G+p$, with unique maximum at $\delta=p^2$. If $m=cM+a_0$ ($c$ even, $a_0>0$ odd), equality holds precisely at $\delta=p^2$, $h=bM$ ($b=0,2,\ldots,c$), and $a=(c-b)M/2+(a_0-p^2)/2$ (all carry-free because $u_0=(a_0-1)/2$ has bottom $j\ge 2$ half-digits). Summing the block factorial units yields $M_c(Z)$ at weight $G+L-p$ (or $M_{d-1}(Z)$ at the terminal suffix $m=dL$); since both $c$ and $d-1$ are even and $<p$, the constant at $Z=0$ is nonzero, making $P_m'$ exact at weight $G+L-p$ on every strict lower interior (off-root correction $\ge jE_p+G+L/2 > G+L-p$). For $g_m^0$, Lemma~\ref{lem:caps}(b) and $V(\ell)\le M$ give $\wt(g_m^0)\ge G+L-M$ and Gauss differentiation gives $\wt((g_m^0)')\ge G+L-M-\rho_{e_{i+1}}$.
+
+\smallskip
+\noindent\emph{Paid shift errors:} Since $V(U)=D$ and every tail index has $V(a)\le M<D$, $\eta=C_m^U/w_m$ has $v(\eta-1)\ge D-M$. Equations~\eqref{eq:f-conn}--\eqref{eq:g-conn} yield $\Delta_f\ge G+L+D-M$, $\Delta_f'\ge G+L+D-M-p$, $\Delta_g\ge G+L+D-2M$ on upper disks, and $\Delta_f'\ge G+L/2+D-M-\rho_{e_{i+1}}$, $\Delta_g\ge G+L+D-2M$ on lower disks. Because $D\ge p^2 M$, $L\le M$, and $\rho_{e_{i+1}} < M/p$, every shift error has strictly higher valuation than the retained initials, proving~(a) and~(b).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:sparse-j2}]
+Applying Proposition~\ref{prop:prefix-cover}(a) directly to $n$ at the outermost level $j$ gives a complete root cover on the $\beta_j$ disks and settles the $(d-1)L$ simple outer-boundary roots (as $M_d$ and $M_{d-1}$ are coprime). Every remaining root lies in one of the disjoint classes: (1) an annulus (strict level-$e_{i+1}$ interior outside the closed level-$e_i$ cover, $0\le i\le t$), (2) a core boundary at level $e_i$ ($0\le i\le t$), or (3) a strict deepest level-$r$ interior.
+
+On any level-$e_i$ boundary ($0\le i\le t$), Proposition~\ref{prop:prefix-cover}(a)--(b) and Proposition~\ref{prop:sparse-inv}(a) give the exact same derivative comparison as Theorem~\ref{thm:odd-middle}: where $M_{e}(Z)=0$, $\delta+\gamma=D_i/2$ ($\delta\ge L$) leaves gaps $2\delta-L$, $\delta-L+1$, $\delta-L+p > 0$ (using $B_i'\ge E_i$); where $M_e(Z)\ne 0$ (and on strict deepest level-$r$ interiors at $i=0$), $C_i$ is exact $J_i$ and the gaps are $D_i/2$, $D_i/2-L+1$, $D_i/2-L+p > 0$.
+
+In any annulus between $e_i$ and $e_{i+1}$ ($\rho_{e_{i+1}}<\tau<\rho_{e_i}$), Lemma~\ref{lem:outside-ratio} and Proposition~\ref{prop:sparse-inv}(b) give $v(f_i)\ge G_i+L-M_i+D_i/2+\rho_{e_i}-\tau$ and divide $P_n'$ only by the unit $C_i$, leaving three competing gaps
+\begin{equation}
+\label{eq:annulus-gaps}
+D_i/2 - M_i + p + \rho_{e_i} - 2\tau,\qquad D_i/2 - M_i + p + \rho_{e_i} - \tau - \rho_{e_{i+1}},\qquad D_i/2 - M_i + p - \tau,
+\end{equation}
+all strictly positive because $M_i+\rho_{e_i} < D_i/2$. This exhausts all $n$ roots without assuming prefix simplicity; coprimality of $P_n, P_{n-1}$,~\eqref{eq:CD-kernel}, and $H_n/P_n$ transfer complete the proof.
+\end{proof}
+
+\section{Bottom-$p$ arbitrary-length induction ($j=1$)}
+\label{sec:sparse-bottom}
+
+When the terminal exponent drops to $j=1$ ($n = 2p^r + \sum_{a=1}^t c_a p^{k_a} + dp$), the $\delta=p^2$ derivative endpoint of Section~\ref{sec:sparse-j2} fails: already at $p=3, m=3$, $P_3'(X) = 3X^2 - (2-q-q^2)$ has constant coefficient $-(1-q)(3-(1-q))$ of valuation $2$ rather than $G+p-p=1$. Three new ingredients resolve $j=1$ uniformly for all $t\ge 0$.
+
+\subsection{The $\delta=p$ derivative endpoint}
+
+For any remaining suffix $m = \sum c_a p^{k_a} + dp$ with $u=(m-1)/2$, $G=W(u)$, and $h=(p-1)/2$, we have $W(m-1)=2G$, $W(m)=2G+p$, $u\bmod p^b \le (p^b-1)/2$ for all $b\ge 1$ with strict inequality for all $b>1$, and Lemma~\ref{lem:sparse-carry} holds verbatim with $L=p$:
+\begin{equation}
+\label{eq:bottom-carry}
+W(x) + W(u-x) + V(2x+1) \le G + p \qquad (0\le x\le u).
+\end{equation}
+On full deep disks, odd $\delta=2b+1$ has derivative score $\le W(u-b)+V(2b+1)$: at most $G+1$ for $b<h$, at most $G+p-W(b)\le G+h$ for $b>h$ by~\eqref{eq:bottom-carry}, and \emph{uniquely} $G+p-h = G+h+1$ at $b=h$ ($\delta=p$, $a=(m-p)/2$, Newton index $0$). Thus $P_m'$ has exact weight $G+h$ with nonzero constant initial!
+
+On full lower disks at $M=p^k$ ($k\ge 3$), Lemma~\ref{lem:caps}(b) bounds the derivative score by $G+V(\delta)-W(\delta-1)/2$. For $\ord_p(\delta)=0$ this is $\le G+1$; for $\ord_p(\delta)=1$ it is $\le G+h+1$ uniquely at $\delta=p$; for $b=\ord_p(\delta)\ge 2$, adding $m-\delta$ and $\delta-1$ to obtain $m-1$ carries across every level $2,\ldots,b$ (since $m-1$ has deficient $p$-digit while $\delta-1$ has all bottom $b$ digits $p-1$), reducing the score to
+\begin{equation}
+\label{eq:high-ord-drop}
+G + \frac{p + p^b - b(p-1)p^{b-1}}{2} < G + h + 1
+\end{equation}
+(already $p(3-p)/2\le 0$ at $b=2$ and decreasing thereafter). Thus the complete lower-disk equality set is $\delta=p$, $h=bM$ ($b=0,2,\ldots,c$), and $a=(c-b)M/2+(a_0-p)/2$ (carry-free for the entire lower suffix $a_0$), summing to $M_c(Z)$ at weight $G+h$ and giving exact valuation $G+h$ on every strict lower interior!
+
+\subsection{Universal Chebyshev shifted-$g'$ identity and four-parity carry lemma}
+
+The old bound $(g_m^0)'\ge G-(p-1)$ is too weak against $f'$ at weight $G+h$. We replace it with an exact identity for the \emph{actual shifted} ordinary derivative $(g_m^U)'$.
+
+\begin{lemma}[Chebyshev shifted-$g'$ identity and four-parity carry bound]
+\label{lem:chebyshev-gprime}
+Let $U_j(X/2)$ denote the monic Chebyshev polynomials ($U_0=1$, $U_1=X$, $U_{j+1}=XU_j-U_{j-1}$). For every legal $U,m$:
+\begin{equation}
+\label{eq:gprime-cheb}
+(g_m^U)' = C_m^U \sum_{1\le a < b\le m} \frac{(-1)^{a-1} q^{a(a-1)/2} P_{m-b}(q) P_{a-1}(q^{-1}) U_{b-a-1}(X/2)}{w_{m-b} w_{a-1} (1-q^{U+a})(1-q^{U+b})}.
+\end{equation}
+Moreover, for any bottom-$p$ suffix $m = \sum c_a p^{k_a} + dp$ with $u=(m-1)/2$, $G=W(u)$, and prefix $U$ with $V(U)=D\ge p^2 M$, setting $x=\lfloor(a-1)/2\rfloor$, $y=\lfloor(m-b)/2\rfloor$, and $z=u-y$ ($0\le x<z\le u$),
+\begin{equation}
+\label{eq:four-parity}
+W(x) + W(y) + V(a) + V(b) \le G + p \qquad (1\le a < b\le m).
+\end{equation}
+Consequently, $\wt((g_m^U)') \ge G$ on every full deep disk.
+\end{lemma}
+
+\begin{proof}
+With $A_j = P_j(q)/w_j$ and $B_j = (-1)^j q^{j(j-1)/2}P_j(q^{-1})/w_j$, their truncated generating series satisfy $AB=1$ and $\partial_X A = A L$, $\partial_X B = -B L$ where $L_\delta = U_{\delta-1}(X/2)/(1-q^\delta)$. Differentiating~\eqref{eq:g-conn} and applying the algebraic cancellation
+\[
+\frac{1}{1-q^\delta}\Bigl(\frac{1}{1-q^{U+a}} - \frac{q^\delta}{1-q^{U+a+\delta}}\Bigr)
+= \frac{1}{(1-q^{U+a})(1-q^{U+a+\delta})}
+\]
+yields~\eqref{eq:gprime-cheb} identically.
+
+For~\eqref{eq:four-parity}, we exhaust all four parities of $(a,b)$:
+\begin{enumerate}[label=(\arabic*),leftmargin=2em]
+\item \emph{$a=2x+2$ even, $b=2z+1$ odd:} $x+1\le z$, so $W(x)+V(a)=W(x+1)\le W(z)$; apply~\eqref{eq:bottom-carry} at $z$.
+\item \emph{$a=2x+2$ even, $b=2z$ even:} $x+1\le z-1$, so $W(x)+V(a)+V(b)\le W(z-1)+V(z)=W(z)$, giving $W(x)+W(y)+V(a)+V(b)\le W(z)+W(u-z)\le G$.
+\item \emph{$a=2x+1$ odd, $b=2z+1$ odd:} $r_0:=z-x>0$ is a multiple of $\min(V(a),V(b))$. If $V(a)\le V(b)$, then $W(z)-W(x)\ge r_0\ge V(a)$ absorbs $V(a)$ and~\eqref{eq:bottom-carry} applies at $z$; otherwise $W(u-x)-W(y)\ge r_0\ge V(b)$ absorbs $V(b)$ and~\eqref{eq:bottom-carry} applies at $x$.
+\item \emph{$a=2x+1$ odd, $b=2z$ even:} Put $r_0=z-x$ and $B_0=V(z)=V(b)$. If $r_0\ge B_0$, $W(u-x)-W(y)\ge B_0$ absorbs $B_0$ and~\eqref{eq:bottom-carry} applies at $x$. If $1\le r_0<B_0$, reflection around the multiple $z$ gives $W(z)-W(x)=B_0+W(r_0-1)$. Whenever $2r_0-1\ne B_0$, we have $V(a)=V(2r_0-1)$, so superadditivity and $V(2v+1)-W(v)\le p$ yield~\eqref{eq:four-parity}. In the remaining exception $r_0=(B_0+1)/2$, put $A_0=V(a)$. If $A_0\le B_0$, $V(2v+1)-W(v)\le p$ again suffices. If $A_0 > B_0$, then for every $p$-power $C$ with $B_0 < C \le A_0$, we have $z\bmod C = (C+B_0)/2 > (C-1)/2 \ge u\bmod C$, so $z+y=u$ carries across $C$; the carry defect is $\ge A_0 - B_0$, leaving total score $\le G + B_0 - W((B_0-1)/2) \le G + p$.
+\end{enumerate}
+Since $v(C_m^U)=W(m)=2G+p$, $v(1-q^{U+a})=V(a)$, $v(1-q^{U+b})=V(b)$, and $U_{b-a-1}(X/2)$ is integral with weight $\ge 0$ near $X=0$, applying Lemma~\ref{lem:caps}(a) and~\eqref{eq:four-parity} to~\eqref{eq:gprime-cheb} gives $\wt((g_m^U)')\ge G$.
+\end{proof}
+
+\subsection{Arbitrary-prefix level-one disk and proof of Theorem~\ref{thm:sparse-bottom}}
+
+\begin{proposition}[Arbitrary-prefix level-one outer cover]
+\label{prop:level1-cover}
+Let $b = Qp < p^s$ have nonzero terminal digit $e = Q\bmod p$ ($1\le e<p$), and set $b_0=b-ep$. On the single closed level-one disk ($\rho_1=1-1/(2p)$), the root initial of $P_b$ at weight $\rho_1 b$ is a nonzero scalar times $Y^{b_0}M_e(Z)$ ($Z_{\mathrm{init}}=\gamma Y^p$), and the ordinary derivative initial of $P_b'$ at weight $\rho_1 b - 1/2$ is a nonzero scalar times $Y^{b_0}M_{e-1}(Z)$ (attained uniquely at $\delta=p$, $a=up$, $0\le 2u\le e-1$).
+\end{proposition}
+
+\begin{proof}
+At $\rho_1=1-1/(2p)$, every $q$-center $-q^a$ lies at valuation $\ge 1 > \rho_1$ from $-1$, so $N_v$ has exact initial $(z+1)^v$ at weight $\rho_1 v$. Equation~\eqref{eq:block-ineq} holds at $D=p$ with $R_1(p)=p-1/2$ and $R_1(t-1)=(t-1)/(2p)$ ($0<t<p$). For roots ($l=v=0$), any $w>0$ with $2w=\eps p+t$ ($t>0$) leaves $F_0(2w)-W(w) = \eps(p-1)/2 + p - 1 - t(p-1)/(2p) > 0$, forcing $w=0$ and $a=up$ ($0\le 2u\le e$), summing to $Y^{b_0}M_e(Z)$ of full degree $b$ (complete monic cover). For derivatives ($\delta=lp+v$), $v>0$ gives $F_0(v+2w)-W(w)\ge p/2$ (strictly above $-1/2$), while $v=0, l\ge 1$ gives $pW(l-1)-l/2 \ge -1/2$ with unique equality at $l=1$ ($\delta=p$), forcing $a=up$ ($0\le 2u\le e-1$) and summing to $Y^{b_0}M_{e-1}(Z)$ at weight $\rho_1 b - 1/2$ (off-root chain correction $\ge E_p + \rho_1 b$).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:sparse-bottom}]
+Proposition~\ref{prop:level1-cover} at $b=n$ ($e=d$ odd) counts all $n$ roots inside the closed level-$1$ disk and settles the $(d-1)p$ simple outer-boundary roots (as $M_d, M_{d-1}$ are coprime), while $b=dp$ gives $P_{dp}'$ exact weight $\rho_1 dp - 1/2 = G+h$ on the strict level-$1$ interior (since $M_{d-1}(0)\ne 0$). All shift errors remain dominated because $D_i\ge p^2 M_i$ and $\rho_{e_{i+1}} < M_i/p$ (including $\rho_1 < 1 = p/p$). On every level-$e_i$ core boundary ($0\le i\le t$), Lemma~\ref{lem:chebyshev-gprime} ($\wt(g_i')\ge G_i$) and exact $v(f_i')=G_i+h$ yield competing gaps $2\delta-p-h$, $\delta-h$, $\delta-h$ (each $\ge h+1 > 0$ since $\delta\ge p$) at $M_e=0$, and $\ge D_i/2 - h > 0$ at $M_e\ne 0$ and on strict deepest $r$-interiors. In every annulus (including the bottom annulus $\rho_1 < \tau < \rho_{k_t}$), the gaps over $f_i'$ are $D_i/2 - M_i + h + 1 + \rho_{e_i} - 2\tau$, $D_i/2 - M_i + h + 1 + \rho_{e_i} - \tau - \rho_{e_{i+1}}$, and $D_i/2 - M_i + h + 1 - \tau$, all $>0$ since $M_i+\rho_{e_i} < D_i/2$. This exhausts all roots and proves squarefreeness of $P_n, H_n$ and $K_n(\xi)\ne 0$.
+\end{proof}
+
+\section{Adjacent terminal-gap theorem ($k=3,j=2$) and the $k\ge 4$ obstruction}
+\label{sec:adjacent}
+
+We now drop the gap-$2$ hypothesis between the two lowest scales, setting $j\ge 2$, $k=j+1$, $L=p^j$, $M=pL=p^{j+1}$, and $\lambda := L/(2p)$.
+
+\begin{lemma}[Replacement adjacent cap and parity-compensated $g'$ bound]
+\label{lem:adjacent-cap}
+For every $j\ge 2$, $k=j+1$, and odd $1\le d<p$ (putting $G_0 = W((dL-1)/2)$):
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item For every $0\le h < M=p^k$,
+\begin{equation}
+\label{eq:adj-cap}
+R_k(h) - W(\lfloor h/2\rfloor) \le \lambda = \frac{L}{2p},
+\end{equation}
+with equality \emph{uniquely} at $h=L$.
+\item Consequently, on every full level-$k$ disk, $\wt(P_{dL}) \ge G_0 + L - \lambda$, with unique equality term $h=L, a=(d-1)L/2$ in~\eqref{eq:newton} whose initial is a nonzero scalar times $Y^{L/\beta_k}$ (in particular nonzero at every level-$k$ boundary $Y\ne 0$).
+\item On every full level-$k$ disk, $(g_{dL}^0)'$ satisfies $\wt((g_{dL}^0)') \ge G_0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Put $S_k(h) = W(h)/2 - R_k(h)$, digit-linear with $S_k(p^a)>0$ for all $a<k$ and $S_k(p^a)=(k-a)(p-1)p^{a-1}/2$ for $a\ge\lfloor k/2\rfloor$. For $h\ge 2$ with highest base-$p$ digit index $a<k$, $W(h)-2W(\lfloor h/2\rfloor)\le p^a$; if $a<\lfloor k/2\rfloor$ then $R_k(h)=0$, while otherwise $R_k(h)-W(\lfloor h/2\rfloor) \le p^a/2 - S_k(h) \le p^{a-1}/2 \le \lambda$. Equality at $\lambda$ forces $a=j$, leading digit $1$, and all lower digits $0$ (since every lower $S_k$-weight is strictly positive), giving $h=L$ uniquely.
+
+(b) Since $W(dL)=2G_0+L$ and $W((L-1)/2)+W((d-1)L/2)=G_0$ is carry-free, applying~\eqref{eq:adj-cap} to~\eqref{eq:newton} yields $\wt(P_{dL})\ge G_0+L-\lambda$ with unique equality at $h=L, a=(d-1)L/2$. On a level-$k$ disk, $N_L$ has initial $\gamma_a Y^{L/\beta_k}$ ($\gamma_a\ne 0$) at exact weight $T_k(L)$.
+
+(c) Differentiate~\eqref{eq:g-conn} at $U=0$, $m=dL$ termwise via~\eqref{eq:newton}. When the first factor is differentiated ($h+\delta+2a=dL-\ell$, $t+2b=\ell-1$, $h,t<M$), the score $R_k(h)+R_k(t)+W(a)+W(b)+V(\delta)+V(\ell)$ satisfies, using $R_k=W/2-S_k$ and superadditivity,
+\[
+\text{score} \le G_0 - \frac{W(\delta)}{2} - S_k(h) - S_k(t) + V(\delta) + V(\ell).
+\]
+Now $W(\delta)/2 - V(\delta)\ge -1/2$, with negative value occurring \emph{only} at $\delta\in\{1,p\}$. In both cases $\delta$ is odd, forcing $h+t \equiv dL-1-\delta \equiv 1\pmod 2$, so at least one of $h,t$ is positive and $S_k(h)+S_k(t)\ge 1/2$ compensates the missing half-unit! Hence $\text{score}\le G_0+V(\ell)\le G_0+L$, and subtracting from $W(dL)=2G_0+L$ gives $\wt((g_{dL}^0)')\ge G_0$ (chain-rule $P$ terms already have weight $\ge G_0$).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:adjacent-k3}]
+Set $j=2$, $k=3$, $L=p^2$, $M=p^3$, $N=p^r$, $A=2N+cM$, $F=f_{dL}^A$, $H=g_{dL}^A$, $C=P_A$, $B=P_{A-1}$, $\sigma_0=\rho_2=p/2$, $\sigma=\rho_3=(2p-1)/2$, and $\lambda=L/(2p)=p/2$.
+
+On full level-$3$ disks, Lemma~\ref{lem:adjacent-cap} together with the paid shift errors $\Delta_F\ge G_0+M-L/2$, $\Delta_F'\ge G_0+M-L/2-\sigma_0$, $\Delta_H\ge G_0+M-L$, $\Delta_H'\ge G_0+M-L-\sigma_0$ (all strictly dominant since $M=pL$ and $\sigma_0<L/2$) yields: $F\ge G_0+L-\lambda$ (exact on every level-$3$ boundary via the nonzero $Y^p$ initial), $F'$ exact $G_0+L-p$ (from the strict level-$2$ interior derivative $M_{d-1}(0)\ne 0$), $H$ exact $G_0$, and $H'\ge G_0$.
+
+Applying Proposition~\ref{prop:prefix-cover}(a) to $n$ at level $2$ settles all $(d-1)L$ level-$2$ boundary roots. The remaining roots partition into three classes:
+\begin{enumerate}[label=(\arabic*),leftmargin=2em]
+\item \emph{Level-$3$ boundaries:} On $P_n = FC - b_A HB$, if $M_c(Z)=0$ then $B$ has exact valuation $E$, $F$ and $H$ are nonzero, $\delta:=v(F)-G_0=L-\lambda$, and $\gamma:=v(C)-J$ satisfies $\delta+\gamma=M/2$. The exact leading term $F'C$ beats $FC'$, $b_A H'B$, and $b_A HB'$ by at least
+\begin{equation}
+\label{eq:adj-gaps}
+L - 2\lambda = p^2 - p,\qquad p - \lambda = \frac{p}{2},\qquad p - \lambda = \frac{p}{2},
+\end{equation}
+all strictly positive! Where $M_c(Z)\ne 0$, $C$ is exact $J$ and the gaps are $M/2-\lambda$, $M/2-L+p$, $M/2-L+p > 0$.
+\item \emph{The $2/3$ annulus ($\sigma_0<\tau<\sigma$):} By Lemma~\ref{lem:outside-ratio} for $C=P_A$, dividing $P_n'$ by $C$ leaves three gaps over $F'$ all bounded below by $M/2 - L + p - \sigma = \frac{1}{2}(p^2(p-2)+1) > 0$.
+\item \emph{Strict level-$3$ interiors:} Splitting at $2N$ with suffix $m=cM+dL$, the balance condition~\eqref{eq:sparse-balance} holds unchanged and $r\ge 5 = k+2$ puts $m<pM$ inside the proved deep-cap range at level $r$, so the exact proof of Theorem~\ref{thm:sparse-j2} settles the $3/r$ annulus, level-$r$ boundaries, and strict level-$r$ interiors.
+\end{enumerate}
+Coprimality of $P_n, P_{n-1}$,~\eqref{eq:CD-kernel}, and $H_n/P_n$ transfer complete the proof.
+\end{proof}
+
+\begin{remark}[Exact local obstruction for general adjacent $k\ge 4$]
+\label{rem:adj-kge4}
+Every step of the proof of Theorem~\ref{thm:adjacent-k3}---including Lemma~\ref{lem:adjacent-cap}, strict level-$k$ interiors, the $j/k$ annulus ($M/2-L+p-\rho_k > 0$), and the $M_c(Z)\ne 0$ boundary branch---holds verbatim for general adjacent $j=k-1\ge 2$ ($k\ge 4$). The \emph{sole} unsettled location class is a level-$k$ boundary root with $M_c(Z)=0$, where $\lambda = p^{j-1}/2 > p$ for all $j\ge 3$ makes the separate-term margin $p-\lambda$ in~\eqref{eq:adj-gaps} negative. Combining the two competing terms as $K_{\mathrm{rem}} := b_A(H'B + HB')$, since $v(FC') \ge v(F'C) + (L - 2\lambda)$ with $L-2\lambda > 0$, a precise sufficient local condition for arbitrary adjacent $k\ge 4$ is
+\begin{equation}
+\label{eq:kge4-cond}
+v\bigl(F'C - b_A(H'B + HB')\bigr) < G_0 + J + \frac{M}{2} + \lambda - p + (L - 2\lambda)
+\end{equation}
+at every level-$k$ boundary root with $M_c(Z)=0$. Determining whether~\eqref{eq:kge4-cond} holds uniformly (via sharper core-neighbor cancellation) remains an open problem.
+\end{remark}
+
+\section{Relation to prior work and open problems}
+\label{sec:prior}
+
+We position these results cleanly relative to Part~I and the classical orthogonal-polynomial literature:
+\begin{itemize}[leftmargin=1.5em]
+\item \emph{Direct predecessor (Part~I~\cite{KKKKK26rs}):} Part~I proved moving-root splitting, eliminated the overlap guard $\Disc_y J_{A+1}(y;\tau_b)\ne 0$ for all odd $d\ge 3$ via $2$-adic Wronskians, established unconditional prime-order valuations ($0\le b<p$), and certified $76$ odd composite orders finitely. None of Part~I's proofs are repeated here. The present paper opens the \emph{multi-digit} prime-power static regime ($p\le n < p^s$) uniformly across all odd primes $p$ and all exponents $s>r$.
+\item \emph{Classical Rogers--Szeg\H{o} and root-of-unity orthogonal polynomials:} The three-term recurrence~\eqref{eq:P-rec} and $q$-Lucas congruences are classical (Lubinsky--Saff~\cite{LS87}, Sagan~\cite{Sag92}, de Boor--Saff~\cite{dBS86}, Ismail~\cite{Ism05}, and Atakishiyeva--Atakishiyev--Koornwinder~\cite{AKK09}, all inspected in full except standard textbook references in~\cite{Ism05}). Spiridonov--Zhedanov~\cite{SZ97} (inspected in full via \texttt{arXiv:q-alg/9605034}) study zeros and orthogonality of Askey--Wilson polynomials at roots of unity, observing that complex recurrence coefficients do not automatically enforce simple zeros below the terminal degree; see also Zhedanov~\cite{Zhe97} (consulted transparently via bibliographic metadata, abstract, and citations in~\cite{AKK09}). Ismail--Witte~\cite{IW01} (inspected in full via \texttt{arXiv:math/0012259}) treat the $q$-difference discriminant rather than ordinary derivatives or the ordinary algebraic-square Christoffel--Darboux kernel~\eqref{eq:CD-kernel}.
+\item \emph{High-order deflation subtraction:} For fixed odd degree $n=2u+1$, elementary cyclotomic degree-counting (deflation) already forces squarefreeness whenever $\varphi(p^s) > C_u$ (for a cubic bound $C_u \approx \frac{2}{3}u^3$). The genuinely new content of Theorems~\ref{thm:short-tail}--\ref{thm:adjacent-k3} lies in the uniform prime-power range $r < s$ where $\varphi(p^s)\le C_u$ (including minimal $s=r+1$), which deflation cannot reach.
+\end{itemize}
+
+\subsection*{Open problems}
+\begin{enumerate}[label=(\arabic*),leftmargin=2em]
+\item \emph{General adjacent scales $k\ge 4$:} Establish the combined-derivative valuation bound~\eqref{eq:kge4-cond} of Remark~\ref{rem:adj-kge4} to extend Theorem~\ref{thm:adjacent-k3} to $n=2p^r+cp^k+dp^{k-1}$ for all $k\ge 4$ and to arbitrary adjacent chains.
+\item \emph{Odd middle digits and even terminal digits:} Extend the length-independent invariant of Theorems~\ref{thm:sparse-j2}--\ref{thm:sparse-bottom} to arbitrary odd middle digits $c_a$ (note that the out-of-scope control $p=3, m=819, \ell=243$ gives deep $g$-score $1824 > G+L=1662$, showing the current carry bound does not transfer blindly) and even terminal digits $d$.
+\item \emph{Arbitrary base-$p$ expansions and composite orders:} Prove squarefreeness of $H_n(z;\zeta_{p^s})$ for \emph{every} $0\le n<p^s$, and extend the nested-disk framework to odd composite orders $d=p^a q^b$ (Conjecture~7.1 of~\cite{KKKKK26rs}).
+\end{enumerate}
+
+\section*{Data and code availability}
+All verification artifacts are publicly available at
+\begin{center}
+\url{https://github.com/AgentSlop-Si/rogers-szego-multidigit}
+\end{center}
+and consist of:
+\begin{enumerate}[label=(\arabic*),leftmargin=2em]
+\item A standalone Python verification script (\texttt{verify\_rogers\_szego\_multidigit.py}, standard library only) verifying the exact shifted continuant, determinant, $g_m^0(0)=(-1)^u Q_u$, and Chebyshev shifted-$g'$ identities~\eqref{eq:gprime-cheb} over $\Q(q)[X]$ (plus the $p=3,m=3$ negative control $v(P_3'(0))=2$); the sparse-suffix carry lemma~\eqref{eq:sparse-carry} across multi-digit suffixes ($t\le 4$, including $n=14{,}751$ and $n=4{,}917$) and odd-middle negative controls ($m=819,273$); exhaustive verification of the four-parity endpoint lemma~\eqref{eq:four-parity} across all $147{,}153$ pairs at $m=543$ and multi-digit fixtures for $p=3,5,7$; the adjacent cap~\eqref{eq:adj-cap} with unique equality at $h=L$, parity-compensated $g'$ scores, $k=3$ boundary/annulus margins, and $k\ge 4$ deficit $p-\lambda<0$; level-$1$ outer covers and $30$-digit annulus margins; and direct finite-field good-reduction squarefreeness and neighbor-coprimality certificates for $P_n$ and $H_n$ at $n=10,20,171,543,549$.
+\item A zero-dependency Lean~4 formal verification file (\texttt{RogersSzegoMultidigit.lean}, verified in Lean~4.36.0 using core \texttt{Init} only, with zero \texttt{sorry}, zero custom axioms, and pure kernel reduction) symbolically proving the geometric legality bound~\eqref{eq:legal-bound}, annulus dominance $M+\rho<D/2$, boundary-gap positivity for Theorems~\ref{thm:sparse-j2}--\ref{thm:adjacent-k3}, the exact $k\ge 4$ deficit $\lambda > p$, the high-order carry bracket~\eqref{eq:high-ord-drop}, and consecutive-neighbor coprimality propagation; and kernel-verifying the sparse carry lemma ($m=171,57$), unique adjacent-cap equality ($p=3,5$), four-parity endpoint lemma ($m=57$), both negative controls, and a direct $\F_{109}[X]$ good-reduction squarefreeness and coprimality proof at $n=20$ ($p=3,r=2,s=3$).
+\end{enumerate}
+
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+\end{document}
